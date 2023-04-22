@@ -17,14 +17,14 @@ function TaskCard({ task }) {
       icon: 'warning',
       background: '#212529',
       iconColor: 'white',
-      confirmButtonText: "Save",
+      confirmButtonText: "Delete",
       confirmButtonColor: '#0d6efd',
       cancelButtonColor: '#d33',
     }).then(async (result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         await deleteTask(id);
-        navigate(`/tasks`);
+        window.location.reload(false);
       } 
     });
   };
