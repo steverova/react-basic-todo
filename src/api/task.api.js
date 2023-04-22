@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const taskApi = axios.create({
-    baseURL: 'http://127.0.0.1:8000/task/api/v1/tasks/'
-    // baseURL: 'https://sunsetsteve.pythonanywhere.com/task/api/v1/tasks/'
+    // baseURL: 'http://127.0.0.1:8000/task/api/v1/tasks/'
+    baseURL: 'https://sunsetsteve.pythonanywhere.com/task/api/v1/tasks/'
 })
 
 export function getAllTask(){
