@@ -53,7 +53,7 @@ export function TaskhtmlFormPage() {
         },
       });
     }
-    navigate("/tasks");
+    navigate("/");
   });
 
   useEffect(() => {
