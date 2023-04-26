@@ -14,18 +14,18 @@ function TaskCard({ task }) {
     Swal.fire({
       title: "Are you sure?",
       showCancelButton: true,
-      icon: 'warning',
-      background: '#212529',
-      iconColor: 'white',
+      icon: "warning",
+      background: "#212529",
+      iconColor: "white",
       confirmButtonText: "Delete",
-      confirmButtonColor: '#0d6efd',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: "#0d6efd",
+      cancelButtonColor: "#d33",
     }).then(async (result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         await deleteTask(id);
         window.location.reload(false);
-      } 
+      }
     });
   };
 
@@ -34,7 +34,7 @@ function TaskCard({ task }) {
   };
 
   return (
-    <div key={task.id} className="col-md-4 p-2">
+    <div key={task.id} className="col-md-12 p-2">
       <div className="card">
         <div className="card-header d-flex justify-content-between ">
           {task.title}{" "}
@@ -42,29 +42,25 @@ function TaskCard({ task }) {
             <span
               onClick={editTask}
               style={style}
-              className=" ms-3 rounded-pill badge bg-primary">
-              Editar
+              className=" ms-3  btn bg-primary-subtle btn-sm">
+              <i className="fa-solid fa-pen"></i>
             </span>
             <span
               onClick={() => deleteT(task.id)}
               style={style}
-              className="ms-3  rounded-pill badge bg-danger">
-              Eliminar
-            </span>
-
-            <div className="ms-3 vr"></div>
-
-            <span
-              className={` ms-3 badge rounded-pill text-bg-${
-                task.done ? "success" : "warning"
-              }`}>
-              {task.done ? "done" : "in-process"}
+              className="ms-3 btn bg-danger-subtle btn-sm">
+              <i className="fa-solid fa-trash"></i>
             </span>
           </div>
         </div>
 
         <div className="card-body">
           <span>{task.description}</span>
+        </div>
+        
+        <div className="d-flex pb-3">
+          <small className="at ps-3" >{task.created_at ? "created: "+task.created_at : ""}</small>
+          <small className="at ps-3" >{task.updated_at ? "updated: "+task.updated_at : ""}</small>
         </div>
       </div>
     </div>

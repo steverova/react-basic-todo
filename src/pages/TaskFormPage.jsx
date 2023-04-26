@@ -9,32 +9,55 @@ import { toast } from "react-hot-toast";
 export function TaskhtmlFormPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const form = {
+    title: "",
+    description: "",
+    done: "",
+  };
+
+  const getDate = () => {
+    const today = new Date();
+    const date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    const time =
+      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const dateTime = date + " " + time;
+
+    return dateTime;
+  };
+
   const {
     register,
     handleSubmit,
     setValue,
-    
-      formState: { errors },
-  } = useForm();
+    formState: { errors },
+  } = useForm({ form });
 
   const onSubmit = handleSubmit(async (data) => {
     if (id) {
-      await updateTask(id, data);
-      toast.success('Task update successfull', {
+      data.updated_at = getDate();
+      updateTask(id, data);
+      toast.success("Task update successfull", {
         position: "top-right",
         style: {
-            background: "#101010",
-            color: '#fff'
-        }
+          background: "#101010",
+          color: "#fff",
+        },
       });
     } else {
+      data.created_at = getDate();
       await createTask(data);
-      toast.success('Task create successfull', {
+      toast.success("Task create successfull", {
         position: "top-right",
         style: {
-            background: "#101010",
-            color: '#fff'
-        }
+          background: "#101010",
+          color: "#fff",
+        },
       });
     }
     navigate("/tasks");
@@ -44,22 +67,21 @@ export function TaskhtmlFormPage() {
     async function loadTask() {
       if (id) {
         const res = await getTask(id);
-        setValue('title',res.data.title);
-        setValue('description',res.data.description);
-        setValue('done', res.data.done);
+        console.log(res);
+        setValue("title", res[0].title);
+        setValue("description", res[0].description);
+        setValue("done", res[0].done);
       }
     }
     loadTask();
   }, []);
 
-
-
   return (
     <>
       <div className="container-fluid">
-      <Link className="text-decoration-none text-light" to="/" >
-      <h1 className="text-center text-decoration-none mt-4">TASK APP</h1>
-      </Link>
+        <Link className="text-decoration-none text-light" to="/">
+          <h1 className="text-center text-decoration-none mt-4">TASK APP</h1>
+        </Link>
         <form className="col-md-4 mx-auto" onSubmit={onSubmit}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -67,34 +89,56 @@ export function TaskhtmlFormPage() {
             </label>
             <input
               {...register("title", { required: true })}
+              placeholder="Research about supabase ..."
               type="text"
-              className="form-control"
+              className="form-control mb-2"
             />
-            {errors.title && <span>This field is requiered</span>}
+            {errors.title && (
+              <span className="text-warning">This field is requiered!!</span>
+            )}
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Description
             </label>
             <textarea
+              placeholder="Research and implements a example to create and use supabase..."
               {...register("description", { required: true })}
               type="text"
-              className="form-control"
+              className="form-control mb-2"
             />
-            {errors.description && <span>This field is requiered</span>}
+            {errors.description && (
+              <span className="text-warning">This field is requiered!!</span>
+            )}
           </div>
 
-          <div className="form-check mb-3">
-            <input
+          <div className="mb-3">
+            <label className="form-label">Status</label>
+            <select
               {...register("done")}
-              className="form-check-input"
-              type="checkbox"
-            />
-            <label className="form-check-label">done</label>
+              className="form-select form-select-lg"
+              defaultValue={1}>
+              <option key={1} value={1}>
+                To-do
+              </option>
+              <option key={2} value={2}>
+                In Progress
+              </option>
+              <option key={3} value={3}>
+                Done
+              </option>
+            </select>
           </div>
-          <button type="submit" className="btn btn-primary">
+
+          <button type="submit" className="btn btn-dark">
             Submit
           </button>
+
+          <div className="mt-3">
+            <button onClick={() => navigate("/")} className="btn btn-dark">
+              <i className="fa-solid fa-arrow-left"></i>
+            </button>
+          </div>
         </form>
       </div>
     </>
