@@ -45,7 +45,7 @@ function TaskList() {
                 className="nav-link active text-warning"
                 aria-current="true"
                 data-bs-toggle="tab"
-                href="#dhcp">
+                href="#tab_task">
                 To do
               </a>
             </li>
@@ -54,7 +54,7 @@ function TaskList() {
                 onClick={() => onClick(2)}
                 className="nav-link text-info"
                 data-bs-toggle="tab"
-                href="#dhcp">
+                href="#tab_task">
                 In Progress
               </a>
             </li>
@@ -64,14 +64,14 @@ function TaskList() {
                 onClick={() => onClick(3)}
                 className="nav-link text-success"
                 data-bs-toggle="tab"
-                href="#dhcp">
+                href="#tab_task">
                 Done
               </a>
             </li>
           </ul>
         </div>
         <form className="card-body tab-content">
-          <div className="tab-pane active" id="dhcp">
+          <div className="tab-pane active" id="tab_task">
             {task.length > 0 ? (
               task.map((task) => (
                 <>
