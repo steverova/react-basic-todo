@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
+import Footer from "../components/footer";
 // import reactlogo from "../images/react.svg"
 // import djangologo from "../images/django.svg"
 export function TaskhtmlFormPage() {
@@ -36,7 +37,7 @@ export function TaskhtmlFormPage() {
       data.updated_at = getDate();
       updateTask(id, data);
       toast.success("Task update successfull", {
-        position: "top-right",
+        position: "bottom-center",
         style: {
           background: "#101010",
           color: "#fff",
@@ -46,7 +47,7 @@ export function TaskhtmlFormPage() {
       data.created_at = getDate();
       await createTask(data);
       toast.success("Task create successfull", {
-        position: "top-right",
+        position: "bottom-center",
         style: {
           background: "#101010",
           color: "#fff",
@@ -134,6 +135,8 @@ export function TaskhtmlFormPage() {
           </div>
         </form>
       </div>
+
+      <Footer></Footer>
     </>
   );
 }
