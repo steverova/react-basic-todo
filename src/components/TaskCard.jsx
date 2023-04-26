@@ -36,31 +36,61 @@ function TaskCard({ task }) {
   return (
     <div key={task.id} className="col-md-12 p-2">
       <div className="card">
-        <div className="card-header d-flex justify-content-between ">
+      <div className={`card-header d-flex justify-content-between ${task.done === 1 ? "bg-todo-task" : task.done === 2 ? "bg-inprogress-task" : "bg-done-task"}`}>
           {task.title}{" "}
-          <div>
+          {/* <div>
             <span
               onClick={editTask}
               style={style}
-              className=" ms-3  btn bg-primary-subtle btn-sm">
-              <i className="fa-solid fa-pen"></i>
+              className="btn btn-hover btn-sm">
+              <i
+                style={{ color: "#8EA7E9" }}
+                className="fa-solid fa-pencil"></i>
             </span>
+            <span className="ms-2 me-2 vr"></span>
             <span
               onClick={() => deleteT(task.id)}
               style={style}
-              className="ms-3 btn bg-danger-subtle btn-sm">
-              <i className="fa-solid fa-trash"></i>
+              className="btn btn-hover btn-sm">
+              <i
+                style={{ color: "#FD8A8A" }}
+                className=" fa-solid fa-trash-can"></i>
+            </span>
+          </div> */}
+        </div>
+        <div className="d-flex justify-content-between">
+          <div>
+            <div className="card-body">
+              <span>{task.description}</span>
+            </div>
+            <div className="d-flex pb-3">
+              <small className="at ps-3">
+                {task.created_at ? "created: " + task.created_at : ""}
+              </small>
+              <small className="at ps-3">
+                {task.updated_at ? "updated: " + task.updated_at : ""}
+              </small>
+            </div>
+          </div>
+          <div className="d-flex flex-column p-2">
+            <span
+              onClick={editTask}
+              style={style}
+              className="mb-2 btn btn-hover btn-sm">
+              <i
+                style={{ color: "#8EA7E9" }}
+                className="fa-solid fa-pencil"></i>
+            </span>
+
+            <span
+              onClick={() => deleteT(task.id)}
+              style={style}
+              className="btn btn-hover btn-sm">
+              <i
+                style={{ color: "#FD8A8A" }}
+                className=" fa-solid fa-trash-can"></i>
             </span>
           </div>
-        </div>
-
-        <div className="card-body">
-          <span>{task.description}</span>
-        </div>
-        
-        <div className="d-flex pb-3">
-          <small className="at ps-3" >{task.created_at ? "created: "+task.created_at : ""}</small>
-          <small className="at ps-3" >{task.updated_at ? "updated: "+task.updated_at : ""}</small>
         </div>
       </div>
     </div>

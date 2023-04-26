@@ -17,3 +17,19 @@ body{
 .at{
   color: rgb(95, 99, 99);
 }
+
+.btn-hover:hover{
+  border: 1px solid rgb(134, 125, 125) !important;
+}
+
+.bg-done-task{
+  background-color: #17463833 !important ;
+}
+
+.bg-todo-task{
+  background-color: #38461733 !important ;
+}
+
+.bg-inprogress-task{
+  background-color: #0dcaf027 !important ;
+}
