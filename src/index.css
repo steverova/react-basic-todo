@@ -33,3 +33,7 @@ body{
 .bg-inprogress-task{
   background-color: #0dcaf027 !important ;
 }
+
+body{
+  position: relative;
+}
