@@ -10,12 +10,6 @@ export function TaskhtmlFormPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const form = {
-    title: "",
-    description: "",
-    done: "",
-  };
-
   const getDate = () => {
     const today = new Date();
     const date =
@@ -27,7 +21,6 @@ export function TaskhtmlFormPage() {
     const time =
       today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     const dateTime = date + " " + time;
-
     return dateTime;
   };
 
@@ -36,7 +29,7 @@ export function TaskhtmlFormPage() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm({ form });
+  } = useForm();
 
   const onSubmit = handleSubmit(async (data) => {
     if (id) {
@@ -74,7 +67,7 @@ export function TaskhtmlFormPage() {
       }
     }
     loadTask();
-  }, []);
+  },[id, setValue]);
 
   return (
     <>
