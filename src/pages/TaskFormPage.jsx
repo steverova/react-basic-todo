@@ -68,7 +68,7 @@ export function TaskhtmlFormPage() {
       }
     }
     loadTask();
-  },[id, setValue]);
+  }, [id, setValue]);
 
   return (
     <>
@@ -96,6 +96,7 @@ export function TaskhtmlFormPage() {
               Description
             </label>
             <textarea
+              rows={4}
               placeholder="Research and implements a example to create and use supabase..."
               {...register("description", { required: true })}
               type="text"

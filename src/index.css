@@ -1,39 +1,51 @@
-body{
+body {
   background-color: #202020;
   color: aliceblue;
 }
 
-.btn-dark{
-  
+.btn-dark {
 
-  border: 1px solid #484d52 !important ;
+
+  border: 1px solid #484d52 !important;
 }
 
-.btn-dark:hover{
+.btn-dark:hover {
   background-color: #15181b !important;
-  border: 1px solid transparent !important ;
+  border: 1px solid transparent !important;
 }
 
-.at{
+.at {
   color: rgb(95, 99, 99);
 }
 
-.btn-hover:hover{
+.btn-hover:hover {
   border: 1px solid rgb(134, 125, 125) !important;
 }
 
-.bg-done-task{
-  background-color: #17463833 !important ;
+.bg-done-task {
+  background-color: #17463833 !important;
 }
 
-.bg-todo-task{
-  background-color: #38461733 !important ;
+.bg-todo-task {
+  background-color: #38461733 !important;
 }
 
-.bg-inprogress-task{
-  background-color: #0dcaf027 !important ;
+.bg-inprogress-task {
+  background-color: #0dcaf027 !important;
 }
 
-body{
+body {
   position: relative;
+}
+
+
+.move-right {
+  animation: moveRight 1s ease-in-out ;
+}
+
+
+@keyframes moveRight {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-50px); }
+  100% { transform: translateY(0); }
 }
