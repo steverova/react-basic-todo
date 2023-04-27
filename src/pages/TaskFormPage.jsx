@@ -13,17 +13,12 @@ export function TaskhtmlFormPage() {
 
   const getDate = () => {
     const today = new Date();
-    const date =
-      today.getFullYear() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getDate();
-    const time =
-      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    const dateTime = date + " " + time;
+    const date = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    const time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+    const dateTime = `${date} ${time}`;
     return dateTime;
   };
+  
 
   const {
     register,
@@ -32,10 +27,10 @@ export function TaskhtmlFormPage() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = handleSubmit(async (data) => {
+  const updateOrCreateTask = async (id, data) => {
     if (id) {
       data.updated_at = getDate();
-      updateTask(id, data);
+      await updateTask(id, data);
       toast.success("Task update successfull", {
         position: "bottom-center",
         style: {
@@ -55,8 +50,12 @@ export function TaskhtmlFormPage() {
       });
     }
     navigate("/");
+  };
+  
+  const onSubmit = handleSubmit(async (data) => {
+    await updateOrCreateTask(id, data);
   });
-
+  
   useEffect(() => {
     async function loadTask() {
       if (id) {

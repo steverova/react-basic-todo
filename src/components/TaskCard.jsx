@@ -38,25 +38,6 @@ function TaskCard({ task }) {
       <div className="card">
       <div className={`card-header d-flex justify-content-between ${task.done === 1 ? "bg-todo-task" : task.done === 2 ? "bg-inprogress-task" : "bg-done-task"}`}>
           {task.title}{" "}
-          {/* <div>
-            <span
-              onClick={editTask}
-              style={style}
-              className="btn btn-hover btn-sm">
-              <i
-                style={{ color: "#8EA7E9" }}
-                className="fa-solid fa-pencil"></i>
-            </span>
-            <span className="ms-2 me-2 vr"></span>
-            <span
-              onClick={() => deleteT(task.id)}
-              style={style}
-              className="btn btn-hover btn-sm">
-              <i
-                style={{ color: "#FD8A8A" }}
-                className=" fa-solid fa-trash-can"></i>
-            </span>
-          </div> */}
         </div>
         <div className="d-flex justify-content-between">
           <div>

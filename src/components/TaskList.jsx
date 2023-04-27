@@ -12,24 +12,12 @@ function TaskList() {
       const res = await getTaskStatus(1);
       setTasks(res);
     }
-
     loadTask();
   }, []);
 
   const onClick = async (tab) => {
-    if (tab === 1) {
-      const res = await getTaskStatus(1);
-      console.log(res);
-      setTasks(res);
-    } else if (tab === 2) {
-      const res = await getTaskStatus(2);
-      console.log(res);
-      setTasks(res);
-    } else {
-      const res = await getTaskStatus(3);
-      console.log(res);
-      setTasks(res);
-    }
+    const res = await getTaskStatus(tab);
+    setTasks(res);
   };
 
   return (
